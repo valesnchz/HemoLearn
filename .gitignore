@@ -1,0 +1,21 @@
+# Entorno virtual (cada persona crea el suyo)
+.venv/
+
+# Datasets: se descargan aparte (ver README)
+data/
+
+# Pesos de PyTorch: pesados y se regeneran al entrenar
+outputs/**/modelos/
+*.pt
+*.pth
+
+# El ONNX de la prueba rápida no sirve (el bueno es outputs/model.onnx)
+outputs/prueba_rapida/model.onnx
+
+# Varios
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/

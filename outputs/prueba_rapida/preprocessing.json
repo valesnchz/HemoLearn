@@ -1,0 +1,59 @@
+{
+  "input_name": "input",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "layout": "NCHW",
+  "dtype": "float32",
+  "color": "RGB",
+  "resize": {
+    "size": [
+      224,
+      224
+    ],
+    "mode": "directo, sin recorte ni relleno",
+    "interpolation": "bilinear"
+  },
+  "scale": "pixel / 255.0 → [0, 1]",
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "formula": "(pixel / 255 - mean[c]) / std[c]",
+  "output_name": "logits",
+  "output_shape": [
+    1,
+    5
+  ],
+  "labels": [
+    "basophil",
+    "eosinophil",
+    "lymphocyte",
+    "monocyte",
+    "neutrophil"
+  ],
+  "aumento_solo_entrenamiento": {
+    "flip_horizontal": 0.5,
+    "flip_vertical": 0.5,
+    "rotacion_grados": 20,
+    "color_jitter": {
+      "brightness": 0.2,
+      "contrast": 0.2,
+      "saturation": 0.2,
+      "hue": 0.02
+    }
+  },
+  "temperature": 0.2818236680564737,
+  "umbral_revision_manual": 0.95,
+  "postprocesamiento": "p = softmax(logits / temperature); si max(p) < umbral_revision_manual → \"revisión manual\"",
+  "modelo": "DeiT-Tiny"
+}

@@ -1,0 +1,9 @@
+trabajo,modelo,datos,clases,accuracy,notas
+"Acevedo et al., 2019",VGG-16 / Inception-v3,PBC,8,96.2,"Mismo dataset, pero 8 clases (incluye IG, eritroblastos y plaquetas) y otra partición: no es directa."
+"Cheuque et al., 2022",Faster R-CNN + MobileNet,del artículo,4,98.4,"4 clases sin basófilos, detección + clasificación y otros datos/partición: no es directa."
+"Katar y Yildirim, 2023",ViT (+ Score-CAM),del artículo,5,99.4,"Mismas 5 clases, pero otros datos/partición: comparable solo en orden de magnitud."
+"Yin et al., 2023",Swin Transformer,del artículo,,99.1,"Otros datos/partición. Monocitos: clase más débil (93,8 %)."
+"Yin et al., 2023",ResNet,del artículo,,95.2,Línea base del mismo artículo; otros datos/partición.
+HemoLearn (este notebook),MobileNetV2,PBC test (15 %),5,48.0,"F1 macro 47.72 %. En Raabin TestA (otro centro): acc 30.00 %, F1 macro 23.73 %. Modo rápido: no válido."
+HemoLearn (este notebook),ResNet18,PBC test (15 %),5,65.33,"F1 macro 61.86 %. En Raabin TestA (otro centro): acc 45.00 %, F1 macro 40.10 %. Modo rápido: no válido."
+HemoLearn (este notebook),DeiT-Tiny ★ app,PBC test (15 %),5,77.33,"F1 macro 75.31 %. En Raabin TestA (otro centro): acc 40.00 %, F1 macro 32.31 %. Modo rápido: no válido."

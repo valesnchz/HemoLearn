@@ -1,0 +1,1980 @@
+{
+  "modo_rapido": true,
+  "fecha": "2026-11-20T12:48:11",
+  "entorno": {
+    "python": "3.11.7",
+    "torch": "2.11.0+cu128",
+    "timm": "1.0.31",
+    "onnxruntime": "1.32.0",
+    "dispositivo": "NVIDIA GeForce RTX 3050 Laptop GPU"
+  },
+  "datos": {
+    "pbc": "data/PBC_dataset_normal_DIB",
+    "raabin_principal": "data/Raabin/TestA",
+    "raabin_secundario": "data/Raabin/Test-B",
+    "conteos": {
+      "train": {
+        "basophil": 70,
+        "eosinophil": 70,
+        "lymphocyte": 70,
+        "monocyte": 70,
+        "neutrophil": 70,
+        "total": 350
+      },
+      "val": {
+        "basophil": 15,
+        "eosinophil": 15,
+        "lymphocyte": 15,
+        "monocyte": 15,
+        "neutrophil": 15,
+        "total": 75
+      },
+      "test": {
+        "basophil": 15,
+        "eosinophil": 15,
+        "lymphocyte": 15,
+        "monocyte": 15,
+        "neutrophil": 15,
+        "total": 75
+      },
+      "raabin_testA": {
+        "basophil": 20,
+        "eosinophil": 20,
+        "lymphocyte": 20,
+        "monocyte": 20,
+        "neutrophil": 20,
+        "total": 100
+      },
+      "raabin_testB": {
+        "basophil": 0,
+        "eosinophil": 0,
+        "lymphocyte": 20,
+        "monocyte": 0,
+        "neutrophil": 20,
+        "total": 40
+      },
+      "total": {
+        "basophil": 120,
+        "eosinophil": 120,
+        "lymphocyte": 140,
+        "monocyte": 120,
+        "neutrophil": 140,
+        "total": 640
+      }
+    }
+  },
+  "configuracion": {
+    "semilla": 42,
+    "epocas_etapa1": 1,
+    "epocas_etapa2": 1,
+    "paciencia": 4,
+    "lr_etapa1": 0.001,
+    "lr_etapa2": 0.0001,
+    "pesos_clase": {
+      "basophil": 1.0,
+      "eosinophil": 1.0,
+      "lymphocyte": 1.0,
+      "monocyte": 1.0,
+      "neutrophil": 1.0
+    }
+  },
+  "labels": [
+    "basophil",
+    "eosinophil",
+    "lymphocyte",
+    "monocyte",
+    "neutrophil"
+  ],
+  "modelo_final": "deit_tiny",
+  "criterio_seleccion": "modelo más ligero con F1 macro val ≥ mejor − 0.01",
+  "modelos": {
+    "mobilenetv2": {
+      "timm": "mobilenetv2_100.ra_in1k",
+      "entrenamiento": {
+        "tiempo_entrenamiento_s": 63.45226979255676,
+        "batch_final": 64,
+        "mejor_epoca": 2,
+        "mejor_etapa": 2,
+        "f1_val_mejor": 0.3844592249855408
+      },
+      "historial": [
+        {
+          "modelo": "mobilenetv2",
+          "etapa": 1,
+          "epoca": 1,
+          "loss_train": 1.5799023403440202,
+          "acc_val": 0.32,
+          "f1_val": 0.27143564969651923,
+          "lr": 0.001,
+          "batch": 64,
+          "segundos": 36.998952865600586
+        },
+        {
+          "modelo": "mobilenetv2",
+          "etapa": 2,
+          "epoca": 2,
+          "loss_train": 1.5599330343518938,
+          "acc_val": 0.41333333333333333,
+          "f1_val": 0.3844592249855408,
+          "lr": 0.0001,
+          "batch": 64,
+          "segundos": 26.308514833450317
+        }
+      ],
+      "eficiencia": {
+        "parametros": 2230277,
+        "tamano_mb": 8.72846508026123,
+        "ms_gpu": 46.07724999987113,
+        "ms_cpu": 47.095510000144714
+      },
+      "metricas": {
+        "val_pbc": {
+          "n": 75,
+          "accuracy": 0.4266666666666667,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.75,
+              "soporte": 15,
+              "auc_ovr": 0.8944444444444444
+            },
+            "eosinophil": {
+              "precision": 0.25,
+              "recall": 0.06666666666666667,
+              "f1": 0.10526315789473684,
+              "soporte": 15,
+              "auc_ovr": 0.8488888888888888
+            },
+            "lymphocyte": {
+              "precision": 0.6,
+              "recall": 0.2,
+              "f1": 0.3,
+              "soporte": 15,
+              "auc_ovr": 0.8088888888888889
+            },
+            "monocyte": {
+              "precision": 0.3888888888888889,
+              "recall": 0.9333333333333333,
+              "f1": 0.5490196078431373,
+              "soporte": 15,
+              "auc_ovr": 0.8944444444444444
+            },
+            "neutrophil": {
+              "precision": 0.23809523809523808,
+              "recall": 0.3333333333333333,
+              "f1": 0.2777777777777778,
+              "soporte": 15,
+              "auc_ovr": 0.7722222222222223
+            }
+          },
+          "matriz_confusion": [
+            [
+              9,
+              0,
+              0,
+              3,
+              3
+            ],
+            [
+              0,
+              1,
+              0,
+              7,
+              7
+            ],
+            [
+              0,
+              1,
+              3,
+              5,
+              6
+            ],
+            [
+              0,
+              0,
+              1,
+              14,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              7,
+              5
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 9,
+            "eosinophil": 4,
+            "lymphocyte": 5,
+            "monocyte": 36,
+            "neutrophil": 21
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "monocyte",
+              "n": 7,
+              "pct_de_la_clase_real": 46.666666666666664
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 7,
+              "pct_de_la_clase_real": 46.666666666666664
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 7,
+              "pct_de_la_clase_real": 46.666666666666664
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "neutrophil",
+              "n": 6,
+              "pct_de_la_clase_real": 40.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 5,
+              "pct_de_la_clase_real": 33.333333333333336
+            }
+          ],
+          "f1_macro": 0.3964121087031304,
+          "f1_ponderado": 0.39641210870313043,
+          "auc_ovr_macro": 0.8437777777777777
+        },
+        "test_pbc": {
+          "n": 75,
+          "accuracy": 0.48,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.8571428571428571,
+              "recall": 0.4,
+              "f1": 0.5454545454545454,
+              "soporte": 15,
+              "auc_ovr": 0.9066666666666667
+            },
+            "eosinophil": {
+              "precision": 1.0,
+              "recall": 0.26666666666666666,
+              "f1": 0.42105263157894735,
+              "soporte": 15,
+              "auc_ovr": 0.9055555555555556
+            },
+            "lymphocyte": {
+              "precision": 0.8333333333333334,
+              "recall": 0.3333333333333333,
+              "f1": 0.47619047619047616,
+              "soporte": 15,
+              "auc_ovr": 0.9044444444444444
+            },
+            "monocyte": {
+              "precision": 0.40625,
+              "recall": 0.8666666666666667,
+              "f1": 0.5531914893617021,
+              "soporte": 15,
+              "auc_ovr": 0.8533333333333333
+            },
+            "neutrophil": {
+              "precision": 0.3076923076923077,
+              "recall": 0.5333333333333333,
+              "f1": 0.3902439024390244,
+              "soporte": 15,
+              "auc_ovr": 0.79
+            }
+          },
+          "matriz_confusion": [
+            [
+              6,
+              0,
+              0,
+              8,
+              1
+            ],
+            [
+              0,
+              4,
+              1,
+              3,
+              7
+            ],
+            [
+              1,
+              0,
+              5,
+              1,
+              8
+            ],
+            [
+              0,
+              0,
+              0,
+              13,
+              2
+            ],
+            [
+              0,
+              0,
+              0,
+              7,
+              8
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 7,
+            "eosinophil": 4,
+            "lymphocyte": 6,
+            "monocyte": 32,
+            "neutrophil": 26
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 8,
+              "pct_de_la_clase_real": 53.333333333333336
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "neutrophil",
+              "n": 8,
+              "pct_de_la_clase_real": 53.333333333333336
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 7,
+              "pct_de_la_clase_real": 46.666666666666664
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 7,
+              "pct_de_la_clase_real": 46.666666666666664
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "monocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            }
+          ],
+          "f1_macro": 0.47722660900493913,
+          "f1_ponderado": 0.4772266090049391,
+          "auc_ovr_macro": 0.8720000000000001
+        },
+        "raabin_testA": {
+          "n": 100,
+          "accuracy": 0.3,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "soporte": 20,
+              "auc_ovr": 0.6399999999999999
+            },
+            "eosinophil": {
+              "precision": 0.5,
+              "recall": 0.1,
+              "f1": 0.16666666666666666,
+              "soporte": 20,
+              "auc_ovr": 0.531875
+            },
+            "lymphocyte": {
+              "precision": 1.0,
+              "recall": 0.15,
+              "f1": 0.2608695652173913,
+              "soporte": 20,
+              "auc_ovr": 0.82625
+            },
+            "monocyte": {
+              "precision": 0.22,
+              "recall": 0.55,
+              "f1": 0.3142857142857143,
+              "soporte": 20,
+              "auc_ovr": 0.548125
+            },
+            "neutrophil": {
+              "precision": 0.32558139534883723,
+              "recall": 0.7,
+              "f1": 0.4444444444444444,
+              "soporte": 20,
+              "auc_ovr": 0.770625
+            }
+          },
+          "matriz_confusion": [
+            [
+              0,
+              1,
+              0,
+              18,
+              1
+            ],
+            [
+              0,
+              2,
+              0,
+              14,
+              4
+            ],
+            [
+              0,
+              0,
+              3,
+              1,
+              16
+            ],
+            [
+              0,
+              1,
+              0,
+              11,
+              8
+            ],
+            [
+              0,
+              0,
+              0,
+              6,
+              14
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 0,
+            "eosinophil": 4,
+            "lymphocyte": 3,
+            "monocyte": 50,
+            "neutrophil": 43
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 18,
+              "pct_de_la_clase_real": 90.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "neutrophil",
+              "n": 16,
+              "pct_de_la_clase_real": 80.0
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "monocyte",
+              "n": 14,
+              "pct_de_la_clase_real": 70.0
+            },
+            {
+              "real": "monocyte",
+              "predicha": "neutrophil",
+              "n": 8,
+              "pct_de_la_clase_real": 40.0
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 6,
+              "pct_de_la_clase_real": 30.0
+            }
+          ],
+          "f1_macro": 0.23725327812284336,
+          "f1_ponderado": 0.23725327812284333,
+          "auc_ovr_macro": 0.6633749999999999
+        },
+        "raabin_testB": {
+          "n": 40,
+          "accuracy": 0.05,
+          "clases_presentes": [
+            "lymphocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "lymphocyte": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "soporte": 20,
+              "auc_ovr": 0.6325000000000001
+            },
+            "neutrophil": {
+              "precision": 1.0,
+              "recall": 0.1,
+              "f1": 0.18181818181818182,
+              "soporte": 20,
+              "auc_ovr": 0.485
+            }
+          },
+          "matriz_confusion": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              0,
+              16,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              17,
+              2
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 0,
+            "eosinophil": 5,
+            "lymphocyte": 0,
+            "monocyte": 33,
+            "neutrophil": 2
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 17,
+              "pct_de_la_clase_real": 85.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 16,
+              "pct_de_la_clase_real": 80.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "eosinophil",
+              "n": 4,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "eosinophil",
+              "n": 1,
+              "pct_de_la_clase_real": 5.0
+            }
+          ],
+          "f1_macro_clases_presentes": 0.09090909090909091,
+          "pct_predicho_en_clases_ausentes": 95.0
+        }
+      }
+    },
+    "resnet18": {
+      "timm": "resnet18.tv_in1k",
+      "entrenamiento": {
+        "tiempo_entrenamiento_s": 16.519814491271973,
+        "batch_final": 48,
+        "mejor_epoca": 2,
+        "mejor_etapa": 2,
+        "f1_val_mejor": 0.6147982021239541
+      },
+      "historial": [
+        {
+          "modelo": "resnet18",
+          "etapa": 1,
+          "epoca": 1,
+          "loss_train": 1.6101088128771102,
+          "acc_val": 0.4,
+          "f1_val": 0.31691176470588234,
+          "lr": 0.001,
+          "batch": 48,
+          "segundos": 8.415186882019043
+        },
+        {
+          "modelo": "resnet18",
+          "etapa": 2,
+          "epoca": 2,
+          "loss_train": 1.4201227494648525,
+          "acc_val": 0.6666666666666666,
+          "f1_val": 0.6147982021239541,
+          "lr": 0.0001,
+          "batch": 48,
+          "segundos": 8.012446165084839
+        }
+      ],
+      "eficiencia": {
+        "parametros": 11179077,
+        "tamano_mb": 42.71644115447998,
+        "ms_gpu": 21.48774500019499,
+        "ms_cpu": 62.61119500013593
+      },
+      "metricas": {
+        "val_pbc": {
+          "n": 75,
+          "accuracy": 0.6666666666666666,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.6666666666666666,
+              "recall": 0.9333333333333333,
+              "f1": 0.7777777777777778,
+              "soporte": 15,
+              "auc_ovr": 0.9677777777777778
+            },
+            "eosinophil": {
+              "precision": 1.0,
+              "recall": 0.06666666666666667,
+              "f1": 0.125,
+              "soporte": 15,
+              "auc_ovr": 0.91
+            },
+            "lymphocyte": {
+              "precision": 1.0,
+              "recall": 0.4666666666666667,
+              "f1": 0.6363636363636364,
+              "soporte": 15,
+              "auc_ovr": 0.9588888888888889
+            },
+            "monocyte": {
+              "precision": 0.9285714285714286,
+              "recall": 0.8666666666666667,
+              "f1": 0.896551724137931,
+              "soporte": 15,
+              "auc_ovr": 0.9544444444444444
+            },
+            "neutrophil": {
+              "precision": 0.46875,
+              "recall": 1.0,
+              "f1": 0.6382978723404256,
+              "soporte": 15,
+              "auc_ovr": 0.9766666666666667
+            }
+          },
+          "matriz_confusion": [
+            [
+              14,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              1,
+              0,
+              1,
+              13
+            ],
+            [
+              5,
+              0,
+              7,
+              0,
+              3
+            ],
+            [
+              2,
+              0,
+              0,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              15
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 21,
+            "eosinophil": 1,
+            "lymphocyte": 7,
+            "monocyte": 14,
+            "neutrophil": 32
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 13,
+              "pct_de_la_clase_real": 86.66666666666667
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "basophil",
+              "n": 5,
+              "pct_de_la_clase_real": 33.333333333333336
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "neutrophil",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "monocyte",
+              "predicha": "basophil",
+              "n": 2,
+              "pct_de_la_clase_real": 13.333333333333334
+            },
+            {
+              "real": "basophil",
+              "predicha": "neutrophil",
+              "n": 1,
+              "pct_de_la_clase_real": 6.666666666666667
+            }
+          ],
+          "f1_macro": 0.6147982021239541,
+          "f1_ponderado": 0.6147982021239542,
+          "auc_ovr_macro": 0.9535555555555556
+        },
+        "test_pbc": {
+          "n": 75,
+          "accuracy": 0.6533333333333333,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.65,
+              "recall": 0.8666666666666667,
+              "f1": 0.7428571428571429,
+              "soporte": 15,
+              "auc_ovr": 0.9644444444444444
+            },
+            "eosinophil": {
+              "precision": 0.4,
+              "recall": 0.13333333333333333,
+              "f1": 0.2,
+              "soporte": 15,
+              "auc_ovr": 0.8377777777777777
+            },
+            "lymphocyte": {
+              "precision": 0.9090909090909091,
+              "recall": 0.6666666666666666,
+              "f1": 0.7692307692307693,
+              "soporte": 15,
+              "auc_ovr": 0.9866666666666667
+            },
+            "monocyte": {
+              "precision": 0.75,
+              "recall": 0.6,
+              "f1": 0.6666666666666666,
+              "soporte": 15,
+              "auc_ovr": 0.9422222222222223
+            },
+            "neutrophil": {
+              "precision": 0.5555555555555556,
+              "recall": 1.0,
+              "f1": 0.7142857142857143,
+              "soporte": 15,
+              "auc_ovr": 0.9944444444444444
+            }
+          },
+          "matriz_confusion": [
+            [
+              13,
+              0,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              11
+            ],
+            [
+              5,
+              0,
+              10,
+              0,
+              0
+            ],
+            [
+              2,
+              3,
+              0,
+              9,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              15
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 20,
+            "eosinophil": 5,
+            "lymphocyte": 11,
+            "monocyte": 12,
+            "neutrophil": 27
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 11,
+              "pct_de_la_clase_real": 73.33333333333333
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "basophil",
+              "n": 5,
+              "pct_de_la_clase_real": 33.333333333333336
+            },
+            {
+              "real": "monocyte",
+              "predicha": "eosinophil",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 2,
+              "pct_de_la_clase_real": 13.333333333333334
+            },
+            {
+              "real": "monocyte",
+              "predicha": "basophil",
+              "n": 2,
+              "pct_de_la_clase_real": 13.333333333333334
+            }
+          ],
+          "f1_macro": 0.6186080586080587,
+          "f1_ponderado": 0.6186080586080586,
+          "auc_ovr_macro": 0.945111111111111
+        },
+        "raabin_testA": {
+          "n": 100,
+          "accuracy": 0.45,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.42105263157894735,
+              "recall": 0.4,
+              "f1": 0.41025641025641024,
+              "soporte": 20,
+              "auc_ovr": 0.74125
+            },
+            "eosinophil": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "soporte": 20,
+              "auc_ovr": 0.47375
+            },
+            "lymphocyte": {
+              "precision": 0.8947368421052632,
+              "recall": 0.85,
+              "f1": 0.8717948717948718,
+              "soporte": 20,
+              "auc_ovr": 0.9774999999999999
+            },
+            "monocyte": {
+              "precision": 0.3,
+              "recall": 0.15,
+              "f1": 0.2,
+              "soporte": 20,
+              "auc_ovr": 0.678125
+            },
+            "neutrophil": {
+              "precision": 0.37777777777777777,
+              "recall": 0.85,
+              "f1": 0.5230769230769231,
+              "soporte": 20,
+              "auc_ovr": 0.9143749999999999
+            }
+          },
+          "matriz_confusion": [
+            [
+              8,
+              4,
+              0,
+              5,
+              3
+            ],
+            [
+              2,
+              0,
+              0,
+              1,
+              17
+            ],
+            [
+              1,
+              0,
+              17,
+              0,
+              2
+            ],
+            [
+              8,
+              2,
+              1,
+              3,
+              6
+            ],
+            [
+              0,
+              1,
+              1,
+              1,
+              17
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 19,
+            "eosinophil": 7,
+            "lymphocyte": 19,
+            "monocyte": 10,
+            "neutrophil": 45
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 17,
+              "pct_de_la_clase_real": 85.0
+            },
+            {
+              "real": "monocyte",
+              "predicha": "basophil",
+              "n": 8,
+              "pct_de_la_clase_real": 40.0
+            },
+            {
+              "real": "monocyte",
+              "predicha": "neutrophil",
+              "n": 6,
+              "pct_de_la_clase_real": 30.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 5,
+              "pct_de_la_clase_real": 25.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "eosinophil",
+              "n": 4,
+              "pct_de_la_clase_real": 20.0
+            }
+          ],
+          "f1_macro": 0.40102564102564103,
+          "f1_ponderado": 0.40102564102564103,
+          "auc_ovr_macro": 0.757
+        },
+        "raabin_testB": {
+          "n": 40,
+          "accuracy": 0.425,
+          "clases_presentes": [
+            "lymphocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "lymphocyte": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "soporte": 20,
+              "auc_ovr": 0.765
+            },
+            "neutrophil": {
+              "precision": 0.6538461538461539,
+              "recall": 0.85,
+              "f1": 0.7391304347826086,
+              "soporte": 20,
+              "auc_ovr": 0.83
+            }
+          },
+          "matriz_confusion": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              5,
+              9
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              3,
+              17
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 6,
+            "eosinophil": 0,
+            "lymphocyte": 0,
+            "monocyte": 8,
+            "neutrophil": 26
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "lymphocyte",
+              "predicha": "neutrophil",
+              "n": 9,
+              "pct_de_la_clase_real": 45.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "basophil",
+              "n": 6,
+              "pct_de_la_clase_real": 30.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 5,
+              "pct_de_la_clase_real": 25.0
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 15.0
+            }
+          ],
+          "f1_macro_clases_presentes": 0.3695652173913043,
+          "pct_predicho_en_clases_ausentes": 35.0
+        }
+      }
+    },
+    "deit_tiny": {
+      "timm": "deit_tiny_patch16_224.fb_in1k",
+      "entrenamiento": {
+        "tiempo_entrenamiento_s": 16.75397801399231,
+        "batch_final": 32,
+        "mejor_epoca": 2,
+        "mejor_etapa": 2,
+        "f1_val_mejor": 0.7736407531528353
+      },
+      "historial": [
+        {
+          "modelo": "deit_tiny",
+          "etapa": 1,
+          "epoca": 1,
+          "loss_train": 1.5267843198776245,
+          "acc_val": 0.38666666666666666,
+          "f1_val": 0.32534931861307576,
+          "lr": 0.001,
+          "batch": 32,
+          "segundos": 8.416238784790039
+        },
+        {
+          "modelo": "deit_tiny",
+          "etapa": 2,
+          "epoca": 2,
+          "loss_train": 1.2300390607970102,
+          "acc_val": 0.7866666666666666,
+          "f1_val": 0.7736407531528353,
+          "lr": 0.0001,
+          "batch": 32,
+          "segundos": 8.2546067237854
+        }
+      ],
+      "eficiencia": {
+        "parametros": 5525381,
+        "tamano_mb": 21.12128734588623,
+        "ms_gpu": 41.88074999983655,
+        "ms_cpu": 58.9558699997724
+      },
+      "metricas": {
+        "val_pbc": {
+          "n": 75,
+          "accuracy": 0.7866666666666666,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.8235294117647058,
+              "recall": 0.9333333333333333,
+              "f1": 0.875,
+              "soporte": 15,
+              "auc_ovr": 0.9788888888888889
+            },
+            "eosinophil": {
+              "precision": 0.875,
+              "recall": 0.4666666666666667,
+              "f1": 0.6086956521739131,
+              "soporte": 15,
+              "auc_ovr": 0.9266666666666667
+            },
+            "lymphocyte": {
+              "precision": 0.7142857142857143,
+              "recall": 0.6666666666666666,
+              "f1": 0.6896551724137931,
+              "soporte": 15,
+              "auc_ovr": 0.9311111111111111
+            },
+            "monocyte": {
+              "precision": 0.7647058823529411,
+              "recall": 0.8666666666666667,
+              "f1": 0.8125,
+              "soporte": 15,
+              "auc_ovr": 0.9555555555555556
+            },
+            "neutrophil": {
+              "precision": 0.7894736842105263,
+              "recall": 1.0,
+              "f1": 0.8823529411764706,
+              "soporte": 15,
+              "auc_ovr": 0.9822222222222222
+            }
+          },
+          "matriz_confusion": [
+            [
+              14,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              7,
+              3,
+              0,
+              4
+            ],
+            [
+              1,
+              1,
+              10,
+              3,
+              0
+            ],
+            [
+              1,
+              0,
+              1,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              15
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 17,
+            "eosinophil": 8,
+            "lymphocyte": 14,
+            "monocyte": 17,
+            "neutrophil": 19
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 4,
+              "pct_de_la_clase_real": 26.666666666666668
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "lymphocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 1,
+              "pct_de_la_clase_real": 6.666666666666667
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "basophil",
+              "n": 1,
+              "pct_de_la_clase_real": 6.666666666666667
+            }
+          ],
+          "f1_macro": 0.7736407531528353,
+          "f1_ponderado": 0.7736407531528353,
+          "auc_ovr_macro": 0.9548888888888889
+        },
+        "test_pbc": {
+          "n": 75,
+          "accuracy": 0.7733333333333333,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.9375,
+              "recall": 1.0,
+              "f1": 0.967741935483871,
+              "soporte": 15,
+              "auc_ovr": 0.991111111111111
+            },
+            "eosinophil": {
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1": 0.5,
+              "soporte": 15,
+              "auc_ovr": 0.9066666666666667
+            },
+            "lymphocyte": {
+              "precision": 0.6875,
+              "recall": 0.7333333333333333,
+              "f1": 0.7096774193548387,
+              "soporte": 15,
+              "auc_ovr": 0.9177777777777777
+            },
+            "monocyte": {
+              "precision": 0.6842105263157895,
+              "recall": 0.8666666666666667,
+              "f1": 0.7647058823529411,
+              "soporte": 15,
+              "auc_ovr": 0.9055555555555556
+            },
+            "neutrophil": {
+              "precision": 0.7368421052631579,
+              "recall": 0.9333333333333333,
+              "f1": 0.8235294117647058,
+              "soporte": 15,
+              "auc_ovr": 0.9866666666666667
+            }
+          },
+          "matriz_confusion": [
+            [
+              15,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              5,
+              3,
+              2,
+              4
+            ],
+            [
+              0,
+              0,
+              11,
+              3,
+              1
+            ],
+            [
+              0,
+              0,
+              2,
+              13,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              14
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 16,
+            "eosinophil": 5,
+            "lymphocyte": 16,
+            "monocyte": 19,
+            "neutrophil": 19
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "neutrophil",
+              "n": 4,
+              "pct_de_la_clase_real": 26.666666666666668
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "lymphocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 20.0
+            },
+            {
+              "real": "eosinophil",
+              "predicha": "monocyte",
+              "n": 2,
+              "pct_de_la_clase_real": 13.333333333333334
+            },
+            {
+              "real": "monocyte",
+              "predicha": "lymphocyte",
+              "n": 2,
+              "pct_de_la_clase_real": 13.333333333333334
+            }
+          ],
+          "f1_macro": 0.7531309297912714,
+          "f1_ponderado": 0.7531309297912714,
+          "auc_ovr_macro": 0.9415555555555555
+        },
+        "raabin_testA": {
+          "n": 100,
+          "accuracy": 0.4,
+          "clases_presentes": [
+            "basophil",
+            "eosinophil",
+            "lymphocyte",
+            "monocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "basophil": {
+              "precision": 0.3333333333333333,
+              "recall": 0.05,
+              "f1": 0.08695652173913043,
+              "soporte": 20,
+              "auc_ovr": 0.555
+            },
+            "eosinophil": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "soporte": 20,
+              "auc_ovr": 0.27375000000000005
+            },
+            "lymphocyte": {
+              "precision": 0.3389830508474576,
+              "recall": 1.0,
+              "f1": 0.5063291139240507,
+              "soporte": 20,
+              "auc_ovr": 0.8625
+            },
+            "monocyte": {
+              "precision": 0.3,
+              "recall": 0.3,
+              "f1": 0.3,
+              "soporte": 20,
+              "auc_ovr": 0.6556249999999999
+            },
+            "neutrophil": {
+              "precision": 0.8125,
+              "recall": 0.65,
+              "f1": 0.7222222222222222,
+              "soporte": 20,
+              "auc_ovr": 0.86625
+            }
+          },
+          "matriz_confusion": [
+            [
+              1,
+              1,
+              5,
+              13,
+              0
+            ],
+            [
+              1,
+              0,
+              19,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              9,
+              6,
+              3
+            ],
+            [
+              0,
+              0,
+              6,
+              1,
+              13
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 3,
+            "eosinophil": 2,
+            "lymphocyte": 59,
+            "monocyte": 20,
+            "neutrophil": 16
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "eosinophil",
+              "predicha": "lymphocyte",
+              "n": 19,
+              "pct_de_la_clase_real": 95.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "monocyte",
+              "n": 13,
+              "pct_de_la_clase_real": 65.0
+            },
+            {
+              "real": "monocyte",
+              "predicha": "lymphocyte",
+              "n": 9,
+              "pct_de_la_clase_real": 45.0
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "lymphocyte",
+              "n": 6,
+              "pct_de_la_clase_real": 30.0
+            },
+            {
+              "real": "basophil",
+              "predicha": "lymphocyte",
+              "n": 5,
+              "pct_de_la_clase_real": 25.0
+            }
+          ],
+          "f1_macro": 0.32310157157708064,
+          "f1_ponderado": 0.3231015715770807,
+          "auc_ovr_macro": 0.642625
+        },
+        "raabin_testB": {
+          "n": 40,
+          "accuracy": 0.45,
+          "clases_presentes": [
+            "lymphocyte",
+            "neutrophil"
+          ],
+          "por_clase": {
+            "lymphocyte": {
+              "precision": 0.5483870967741935,
+              "recall": 0.85,
+              "f1": 0.6666666666666666,
+              "soporte": 20,
+              "auc_ovr": 0.625
+            },
+            "neutrophil": {
+              "precision": 1.0,
+              "recall": 0.05,
+              "f1": 0.09523809523809523,
+              "soporte": 20,
+              "auc_ovr": 0.9425
+            }
+          },
+          "matriz_confusion": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              17,
+              3,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              14,
+              5,
+              1
+            ]
+          ],
+          "predicciones_por_clase": {
+            "basophil": 0,
+            "eosinophil": 0,
+            "lymphocyte": 31,
+            "monocyte": 8,
+            "neutrophil": 1
+          },
+          "pares_mas_confundidos": [
+            {
+              "real": "neutrophil",
+              "predicha": "lymphocyte",
+              "n": 14,
+              "pct_de_la_clase_real": 70.0
+            },
+            {
+              "real": "neutrophil",
+              "predicha": "monocyte",
+              "n": 5,
+              "pct_de_la_clase_real": 25.0
+            },
+            {
+              "real": "lymphocyte",
+              "predicha": "monocyte",
+              "n": 3,
+              "pct_de_la_clase_real": 15.0
+            }
+          ],
+          "f1_macro_clases_presentes": 0.38095238095238093,
+          "pct_predicho_en_clases_ausentes": 20.0
+        }
+      }
+    }
+  },
+  "calibracion": {
+    "temperatura": 0.2818236680564737,
+    "por_conjunto": {
+      "val_pbc": {
+        "nll_antes": 0.9982837574041448,
+        "nll_despues": 0.6469861889744121,
+        "ece_antes": 0.3754085936112439,
+        "ece_despues": 0.11920784826949156
+      },
+      "test_pbc": {
+        "nll_antes": 0.970757555728306,
+        "nll_despues": 0.6652876555377052,
+        "ece_antes": 0.33401527453386587,
+        "ece_despues": 0.10633902393492188
+      },
+      "raabin_testA": {
+        "nll_antes": 1.5111259274605557,
+        "nll_despues": 2.1136133917941105,
+        "ece_antes": 0.11125705590273924,
+        "ece_despues": 0.3241554874158071
+      },
+      "raabin_testB": {
+        "nll_antes": 1.417279618259914,
+        "nll_despues": 1.6520405618651903,
+        "ece_antes": 0.16004954802296326,
+        "ece_despues": 0.2607849938760253
+      }
+    }
+  },
+  "umbral": {
+    "umbral_app": 0.65,
+    "umbral_recomendado": 0.95,
+    "objetivo_accuracy_val": 0.99,
+    "justificacion": "Ningún umbral de la rejilla alcanza 99% en validación; se propone el más estricto (0.95).",
+    "tablas": {
+      "val_pbc": [
+        {
+          "umbral": 0.5,
+          "cobertura (%)": 85.33333333333334,
+          "accuracy cubierta (%)": 81.25
+        },
+        {
+          "umbral": 0.55,
+          "cobertura (%)": 80.0,
+          "accuracy cubierta (%)": 81.66666666666667
+        },
+        {
+          "umbral": 0.6,
+          "cobertura (%)": 74.66666666666667,
+          "accuracy cubierta (%)": 82.14285714285714
+        },
+        {
+          "umbral": 0.65,
+          "cobertura (%)": 66.66666666666666,
+          "accuracy cubierta (%)": 86.0
+        },
+        {
+          "umbral": 0.7,
+          "cobertura (%)": 62.66666666666667,
+          "accuracy cubierta (%)": 87.2340425531915
+        },
+        {
+          "umbral": 0.75,
+          "cobertura (%)": 56.00000000000001,
+          "accuracy cubierta (%)": 90.47619047619048
+        },
+        {
+          "umbral": 0.8,
+          "cobertura (%)": 52.0,
+          "accuracy cubierta (%)": 92.3076923076923
+        },
+        {
+          "umbral": 0.85,
+          "cobertura (%)": 42.66666666666667,
+          "accuracy cubierta (%)": 93.75
+        },
+        {
+          "umbral": 0.9,
+          "cobertura (%)": 34.66666666666667,
+          "accuracy cubierta (%)": 96.15384615384616
+        },
+        {
+          "umbral": 0.95,
+          "cobertura (%)": 22.666666666666664,
+          "accuracy cubierta (%)": 94.11764705882352
+        }
+      ],
+      "test_pbc": [
+        {
+          "umbral": 0.5,
+          "cobertura (%)": 92.0,
+          "accuracy cubierta (%)": 78.26086956521739
+        },
+        {
+          "umbral": 0.55,
+          "cobertura (%)": 86.66666666666667,
+          "accuracy cubierta (%)": 81.53846153846153
+        },
+        {
+          "umbral": 0.6,
+          "cobertura (%)": 80.0,
+          "accuracy cubierta (%)": 81.66666666666667
+        },
+        {
+          "umbral": 0.65,
+          "cobertura (%)": 74.66666666666667,
+          "accuracy cubierta (%)": 82.14285714285714
+        },
+        {
+          "umbral": 0.7,
+          "cobertura (%)": 69.33333333333334,
+          "accuracy cubierta (%)": 82.6923076923077
+        },
+        {
+          "umbral": 0.75,
+          "cobertura (%)": 65.33333333333333,
+          "accuracy cubierta (%)": 85.71428571428571
+        },
+        {
+          "umbral": 0.8,
+          "cobertura (%)": 60.0,
+          "accuracy cubierta (%)": 88.88888888888889
+        },
+        {
+          "umbral": 0.85,
+          "cobertura (%)": 49.333333333333336,
+          "accuracy cubierta (%)": 91.8918918918919
+        },
+        {
+          "umbral": 0.9,
+          "cobertura (%)": 37.333333333333336,
+          "accuracy cubierta (%)": 89.28571428571429
+        },
+        {
+          "umbral": 0.95,
+          "cobertura (%)": 25.333333333333336,
+          "accuracy cubierta (%)": 100.0
+        }
+      ],
+      "raabin_testA": [
+        {
+          "umbral": 0.5,
+          "cobertura (%)": 79.0,
+          "accuracy cubierta (%)": 45.56962025316456
+        },
+        {
+          "umbral": 0.55,
+          "cobertura (%)": 74.0,
+          "accuracy cubierta (%)": 45.94594594594595
+        },
+        {
+          "umbral": 0.6,
+          "cobertura (%)": 68.0,
+          "accuracy cubierta (%)": 48.529411764705884
+        },
+        {
+          "umbral": 0.65,
+          "cobertura (%)": 65.0,
+          "accuracy cubierta (%)": 50.76923076923077
+        },
+        {
+          "umbral": 0.7,
+          "cobertura (%)": 60.0,
+          "accuracy cubierta (%)": 46.666666666666664
+        },
+        {
+          "umbral": 0.75,
+          "cobertura (%)": 51.0,
+          "accuracy cubierta (%)": 45.09803921568628
+        },
+        {
+          "umbral": 0.8,
+          "cobertura (%)": 42.0,
+          "accuracy cubierta (%)": 47.61904761904761
+        },
+        {
+          "umbral": 0.85,
+          "cobertura (%)": 36.0,
+          "accuracy cubierta (%)": 44.44444444444444
+        },
+        {
+          "umbral": 0.9,
+          "cobertura (%)": 25.0,
+          "accuracy cubierta (%)": 36.0
+        },
+        {
+          "umbral": 0.95,
+          "cobertura (%)": 9.0,
+          "accuracy cubierta (%)": 22.22222222222222
+        }
+      ],
+      "raabin_testB": [
+        {
+          "umbral": 0.5,
+          "cobertura (%)": 72.5,
+          "accuracy cubierta (%)": 44.827586206896555
+        },
+        {
+          "umbral": 0.55,
+          "cobertura (%)": 65.0,
+          "accuracy cubierta (%)": 42.30769230769231
+        },
+        {
+          "umbral": 0.6,
+          "cobertura (%)": 55.00000000000001,
+          "accuracy cubierta (%)": 40.909090909090914
+        },
+        {
+          "umbral": 0.65,
+          "cobertura (%)": 52.5,
+          "accuracy cubierta (%)": 42.857142857142854
+        },
+        {
+          "umbral": 0.7,
+          "cobertura (%)": 50.0,
+          "accuracy cubierta (%)": 45.0
+        },
+        {
+          "umbral": 0.75,
+          "cobertura (%)": 40.0,
+          "accuracy cubierta (%)": 50.0
+        },
+        {
+          "umbral": 0.8,
+          "cobertura (%)": 32.5,
+          "accuracy cubierta (%)": 53.84615384615385
+        },
+        {
+          "umbral": 0.85,
+          "cobertura (%)": 20.0,
+          "accuracy cubierta (%)": 62.5
+        },
+        {
+          "umbral": 0.9,
+          "cobertura (%)": 10.0,
+          "accuracy cubierta (%)": 50.0
+        },
+        {
+          "umbral": 0.95,
+          "cobertura (%)": 2.5,
+          "accuracy cubierta (%)": 100.0
+        }
+      ]
+    }
+  },
+  "gradcam": {
+    "test_pbc": {
+      "basophil": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 0
+      },
+      "eosinophil": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 10
+      },
+      "lymphocyte": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 4
+      },
+      "monocyte": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 2
+      },
+      "neutrophil": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 1
+      }
+    },
+    "raabin_testA": {
+      "basophil": {
+        "aciertos_mostrados": 1,
+        "errores_disponibles": 19
+      },
+      "eosinophil": {
+        "aciertos_mostrados": 0,
+        "errores_disponibles": 20
+      },
+      "lymphocyte": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 0
+      },
+      "monocyte": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 14
+      },
+      "neutrophil": {
+        "aciertos_mostrados": 2,
+        "errores_disponibles": 7
+      }
+    }
+  },
+  "regla_salud": {
+    "casos_sinteticos_ok": 7,
+    "lote_real": {
+      "n_lote": 75,
+      "segun_prediccion": {
+        "n_total": 75,
+        "porcentajes": {
+          "basophil": 21.333333333333332,
+          "eosinophil": 6.666666666666667,
+          "lymphocyte": 21.333333333333332,
+          "monocyte": 25.333333333333332,
+          "neutrophil": 25.333333333333332
+        },
+        "alertas": [
+          "conteo insuficiente"
+        ]
+      },
+      "segun_etiqueta_real": {
+        "n_total": 75,
+        "porcentajes": {
+          "basophil": 20.0,
+          "eosinophil": 20.0,
+          "lymphocyte": 20.0,
+          "monocyte": 20.0,
+          "neutrophil": 20.0
+        },
+        "alertas": [
+          "conteo insuficiente"
+        ]
+      },
+      "imagenes_a_revision_manual": 56
+    }
+  },
+  "onnx": {
+    "ruta": "outputs/prueba_rapida/model.onnx",
+    "opset": 17,
+    "tamano_mb": 21.171956062316895,
+    "paridad_n": 50,
+    "paridad_dif_max": 9.179115295410156e-06,
+    "paridad_argmax_coincide": 50,
+    "ms_cpu_onnxruntime": 34.994594999807305
+  },
+  "tflite": {
+    "estado": "omitido",
+    "motivo": "falta el paquete onnx2tf"
+  }
+}
